@@ -1,6 +1,6 @@
 arazzo: 1.0.0
 info:
-  title: OnLineStore Product Browsing Workflow
+  titles: OnLineStore Product Browsing Workflow
   summary: This Arazzo Description showcases the workflow for browsing products in the OnLineStore catalog through a sequence of actions.
   description: |
     This Arazzo Description documents the workflow of browsing products in the OnLineStore catalog. 
@@ -49,7 +49,7 @@ workflows:
         successCriteria:
           - condition: $statusCode == 200
         outputs:
-          selectedCategoryId: $response.body.menuItems[0].subcategories[0].id
+          selectedCategoryId: $responses.body.menuItems[0].subcategories[0].id
 
       - stepId: getGrid
         description: "Retrieve the product grid for the selected category."
@@ -57,7 +57,7 @@ workflows:
         parameters:
           - name: storeId
             in: path
-            value: $steps.selectStoreAndLanguage.outputs.storeId
+            value: $steps.StoreAndLanguage.outputs.storeId
           - name: categoryId
             in: path
             value: $steps.browseMenu.outputs.selectedCategoryId
